@@ -19,11 +19,11 @@
 		<%--Creation du formulaitre --%>
 		<form action="post" action="connexion">
 			<div class="form_line">
-				<input type="text" placeholder="Pseudo" >
+				<input type="text" name="pseudo" required placeholder="Pseudo" >
 			</div>
 			
 			<div class="form_line">
-				<input type="text" placeholder="Mot de Passe" >
+				<input type="text" name="password" required placeholder="Mot de Passe" >
 			</div>
 			
 			<input type="submit" value="connexion">

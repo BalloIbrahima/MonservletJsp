@@ -11,19 +11,20 @@
     <description></description>
     <display-name>Monservlet</display-name>
     <servlet-name>Monservlet</servlet-name>
-    <servlet-class>Monservlet</servlet-class>
+    <servlet-class>com.servlets.Monservlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Monservlet</servlet-name>
-    <url-pattern>/Monservlet</url-pattern>
+    <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
   
   <servlet>
     <description></description>
     <display-name>monservlet2</display-name>
     <servlet-name>monservlet2</servlet-name>
-    <servlet-class>monservlet2</servlet-class>
+    <servlet-class>com.servlets.monservlet2</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>monservlet2</servlet-name>
     <url-pattern>/monservlet2</url-pattern>
