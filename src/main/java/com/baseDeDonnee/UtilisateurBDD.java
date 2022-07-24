@@ -26,9 +26,10 @@ public class UtilisateurBDD {
 			System.out.println(e.getMessage());
 		}
 		
+//		Connection avec la basse de donnée
 		try {
 			
-			this.connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/M", "root", "");
+			this.connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/MonServletJsp", "root", "");
 			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -47,13 +48,14 @@ public class UtilisateurBDD {
 		
 			requette.setString(1, user.getNom());
 			requette.setString(2, user.getPrenom());
-			requette.setString(3, user.getNom());
-			requette.setString(4, user.getPseudo());
+			requette.setString(3, user.getPseudo());
+			requette.setString(4, user.getEmail());
 			requette.setString(5, user.getMotDePasse());
 			
 			requette.executeUpdate();
+			
 		}catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
 		
 		
@@ -82,7 +84,7 @@ public class UtilisateurBDD {
 			requette=this.connection.createStatement();
 			
 //			execution de la requette
-			resultat=requette.executeQuery("Select nom,prenom,eamil FROM utilisateurs;");
+			resultat=requette.executeQuery("Select nom,prenom,email FROM utilisateurs;");
 			
 //			recuperation des resultats un à un
 			while(resultat.next()) {
@@ -121,6 +123,44 @@ public class UtilisateurBDD {
 		return utilisateurs;
 	}
 
+//	methode pour la connection d'un utilisateur
+	public Utilisateur login(String pseudo,String motDePasse) {
+		
+//		creation d'un utilisateur qui sera retouner
+		Utilisateur user=null;
+		
+		
+//		Deux variable requette qui envoyera la requette et resultat qui la recevra
+		
+		this.InitialiseConnection();
+		
+		try {
+			
+			PreparedStatement requette=this.connection.prepareStatement("SELECT * FROM utilisateurs WHERE pseudo = ? and motDePasse = ?;");
+			
+			requette.setString(1, pseudo);
+			requette.setString(2, motDePasse);
+	
+			ResultSet result = requette.executeQuery();
+			
+			if (result.next()) {
+				user = new Utilisateur();
+				user.setNom(result.getString("nom"));
+				user.setPseudo(result.getString("prenom"));
+				user.setPseudo(result.getString("pseudo"));
+				user.setEmail(result.getString("email"));
+
+			}
+			
+			result.close();
+			requette.close();
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return user;
+	}
 	
 	
 }

@@ -27,7 +27,7 @@
   
   <servlet-mapping>
     <servlet-name>monservlet2</servlet-name>
-    <url-pattern>/monservlet2</url-pattern>
+    <url-pattern>/acceuil</url-pattern>
   </servlet-mapping>
   
 </web-app>
